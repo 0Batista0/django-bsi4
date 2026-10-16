@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'produtos',
-    'rest_framework'
+    'rest_framework',
+    'drf_spectacular',
     'django.contrib.staticfiles',
 ]
 
@@ -122,3 +123,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "API de Produtos",
+    "DESCRIPTION": "API de produtos construída com Django REST Framework",
+    "VERSION": "1.0.0",
+}

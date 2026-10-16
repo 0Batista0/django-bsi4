@@ -11,15 +11,16 @@ class ProdutoPagination(PageNumberPagination):
 
     def paginate_queryset(self, queryset, request, view=None):
         self.request = request
-    page_size_param = request.query_params.get(self.page_size_query_param)
-    if page_size_param is not None:
-      try:
-        if int(page_size_param) > self.max_page_size:
-          raise ValidationError({
-            "page_size": "O campo page_size não pode passar de 100."
-          })
-      except ValueError:
-        pass
+        page_size_param = request.query_params.get(self.page_size_query_param)
+        
+        if page_size_param is not None:
+            try:
+                if int(page_size_param) > self.max_page_size:
+                    raise ValidationError({
+                        "page_size": "O campo page_size não pode passar de 100."
+                    })
+            except ValueError:
+                pass
 
         page_size = self.get_page_size(request)
         if page_size is None:

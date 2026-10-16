@@ -9,4 +9,4 @@ class ProdutoFilter(filters.FilterSet):
 
     class Meta:
         model = Produto
-        fields = ("preco_minimo", "preco_maximo")
+        fields = ("marca", "preco_minimo", "preco_maximo")

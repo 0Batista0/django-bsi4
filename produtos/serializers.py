@@ -7,7 +7,7 @@ from .models import Produto
 class ProdutoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Produto
-        fields = ("id", "nome", "marca", "preco")
+        fields = ("id", "nome", "marca", "preco", "estoque", "descrição")
 
     def validate_nome(self, value):
         nome_limpo = value.strip()
@@ -28,4 +28,9 @@ class ProdutoSerializer(serializers.ModelSerializer):
     def validate_preco(self, value):
         if value <= Decimal("0"):
             raise serializers.ValidationError("O preço deve ser maior que zero.")
+        return value
+
+    def validate_estoque(self, value):
+        if value < 0:
+            raise serializers.ValidationError("O estoque não pode ser negativo.")
         return value
